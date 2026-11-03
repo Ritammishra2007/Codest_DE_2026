@@ -22,12 +22,12 @@
 
 | Role | Name | Enrollment No. | GitHub Username |
 |------|------|----------------|-----------------|
-| Group Lead | | | |
-| Member 2 | | | |
-| Member 3 | | | |
-| Member 4 | | | |
+| Group Lead | Ritam Mishra | 2501010610 | Ritammishra2007 |
+| Member 2 | Naman Mishra | 2501010292 | Naman-DevGit |
+| Member 3 | Anmol Gautam | 2501010066 | devv-Anmol |
+| Member 4 | Saksham Kejriwal | 2501010396 | Sakshamkejriwal |
 
-**Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
+**Team No.:** T0006 · **Section:** D · **Repository URL:** https://github.com/Ritammishra2007/Codest_DE_2026
 
 ---
 

@@ -1,0 +1,27 @@
+{
+  "team_number": "T0006",
+  "group_lead": {
+    "name": "Ritam Mishra",
+    "enrollment_no": "2501010610",
+    "github": "https://github.com/Ritammishra2007"
+  },
+  "members": [
+    {
+      "name": "Naman Mishra",
+      "enrollment_no": "2501010292",
+      "github": "https://github.com/Naman-DevGit"
+    },
+    {
+      "name": "Saksham Kejriwal",
+      "enrollment_no": "2501010396",
+      "github": "https://github.com/sakshamkejriwal"
+    },
+    {
+      "name": "Anmol Gautam",
+      "enrollment_no": "2501010066",
+      "github": "https://github.com/devv-Anmol"
+    }
+  ],
+  "postgres_version": "18.4",
+  "laptop_used_for_benchmarks": "Macbook Pro M4"
+}

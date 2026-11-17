@@ -1,0 +1,45 @@
+=== R01 run 1 ===
+Limit  (cost=1098.12..1098.14 rows=8 width=52) (actual time=3.136..3.140 rows=12.00 loops=1)
+  Buffers: shared hit=651
+  ->  Sort  (cost=1098.12..1098.14 rows=8 width=52) (actual time=3.135..3.136 rows=12.00 loops=1)
+        Sort Key: published_at DESC
+        Sort Method: quicksort  Memory: 26kB
+        Buffers: shared hit=651
+        ->  Seq Scan on videos  (cost=0.00..1098.00 rows=8 width=52) (actual time=0.397..3.121 rows=12.00 loops=1)
+              Filter: ((channel_id = 217) AND ((visibility)::text = 'PUBLIC'::text))
+              Rows Removed by Filter: 29988
+              Buffers: shared hit=648
+Planning:
+  Buffers: shared hit=108
+Planning Time: 0.492 ms
+Execution Time: 3.156 ms
+=== R01 run 2 ===
+Limit  (cost=1098.12..1098.14 rows=8 width=52) (actual time=2.322..2.323 rows=12.00 loops=1)
+  Buffers: shared hit=651
+  ->  Sort  (cost=1098.12..1098.14 rows=8 width=52) (actual time=2.321..2.322 rows=12.00 loops=1)
+        Sort Key: published_at DESC
+        Sort Method: quicksort  Memory: 26kB
+        Buffers: shared hit=651
+        ->  Seq Scan on videos  (cost=0.00..1098.00 rows=8 width=52) (actual time=0.370..2.306 rows=12.00 loops=1)
+              Filter: ((channel_id = 217) AND ((visibility)::text = 'PUBLIC'::text))
+              Rows Removed by Filter: 29988
+              Buffers: shared hit=648
+Planning:
+  Buffers: shared hit=108
+Planning Time: 0.243 ms
+Execution Time: 2.338 ms
+=== R01 run 3 ===
+Limit  (cost=1098.12..1098.14 rows=8 width=52) (actual time=2.505..2.507 rows=12.00 loops=1)
+  Buffers: shared hit=651
+  ->  Sort  (cost=1098.12..1098.14 rows=8 width=52) (actual time=2.504..2.504 rows=12.00 loops=1)
+        Sort Key: published_at DESC
+        Sort Method: quicksort  Memory: 26kB
+        Buffers: shared hit=651
+        ->  Seq Scan on videos  (cost=0.00..1098.00 rows=8 width=52) (actual time=0.430..2.488 rows=12.00 loops=1)
+              Filter: ((channel_id = 217) AND ((visibility)::text = 'PUBLIC'::text))
+              Rows Removed by Filter: 29988
+              Buffers: shared hit=648
+Planning:
+  Buffers: shared hit=108
+Planning Time: 0.230 ms
+Execution Time: 2.522 ms

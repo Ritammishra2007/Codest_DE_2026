@@ -1,0 +1,39 @@
+=== R06 run 1 ===
+Sort  (cost=1099.66..1099.80 rows=57 width=48) (actual time=1.702..1.702 rows=19.00 loops=1)
+  Sort Key: published_at
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=651
+  ->  Seq Scan on videos  (cost=0.00..1098.00 rows=57 width=48) (actual time=0.023..1.693 rows=19.00 loops=1)
+        Filter: ((published_at < '2026-07-08 00:00:00+05:30'::timestamp with time zone) AND ((visibility)::text = 'SCHEDULED'::text))
+        Rows Removed by Filter: 29981
+        Buffers: shared hit=648
+Planning:
+  Buffers: shared hit=97
+Planning Time: 0.167 ms
+Execution Time: 1.717 ms
+=== R06 run 2 ===
+Sort  (cost=1099.66..1099.80 rows=57 width=48) (actual time=1.671..1.672 rows=19.00 loops=1)
+  Sort Key: published_at
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=651
+  ->  Seq Scan on videos  (cost=0.00..1098.00 rows=57 width=48) (actual time=0.021..1.663 rows=19.00 loops=1)
+        Filter: ((published_at < '2026-07-08 00:00:00+05:30'::timestamp with time zone) AND ((visibility)::text = 'SCHEDULED'::text))
+        Rows Removed by Filter: 29981
+        Buffers: shared hit=648
+Planning:
+  Buffers: shared hit=97
+Planning Time: 0.140 ms
+Execution Time: 1.686 ms
+=== R06 run 3 ===
+Sort  (cost=1099.66..1099.80 rows=57 width=48) (actual time=1.788..1.789 rows=19.00 loops=1)
+  Sort Key: published_at
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=651
+  ->  Seq Scan on videos  (cost=0.00..1098.00 rows=57 width=48) (actual time=0.023..1.780 rows=19.00 loops=1)
+        Filter: ((published_at < '2026-07-08 00:00:00+05:30'::timestamp with time zone) AND ((visibility)::text = 'SCHEDULED'::text))
+        Rows Removed by Filter: 29981
+        Buffers: shared hit=648
+Planning:
+  Buffers: shared hit=97
+Planning Time: 0.169 ms
+Execution Time: 1.803 ms

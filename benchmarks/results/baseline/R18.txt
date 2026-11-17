@@ -1,0 +1,75 @@
+=== R18 run 1 ===
+Sort  (cost=2795.66..2796.52 rows=345 width=40) (actual time=8.828..8.837 rows=397.00 loops=1)
+  Sort Key: v.video_id
+  Sort Method: quicksort  Memory: 48kB
+  Buffers: shared hit=1307
+  ->  Hash Join  (cost=2360.24..2781.12 rows=345 width=40) (actual time=7.234..8.715 rows=397.00 loops=1)
+        Hash Cond: (c.video_id = v.video_id)
+        Buffers: shared hit=1304
+        ->  HashAggregate  (cost=1406.00..1613.23 rows=20723 width=12) (actual time=5.783..6.539 rows=23325.00 loops=1)
+              Group Key: c.video_id
+              Batches: 1  Memory Usage: 1305kB
+              Buffers: shared hit=656
+              ->  Seq Scan on comments c  (cost=0.00..1256.00 rows=60000 width=12) (actual time=0.004..1.475 rows=60000.00 loops=1)
+                    Buffers: shared hit=656
+        ->  Hash  (cost=948.00..948.00 rows=499 width=40) (actual time=1.442..1.442 rows=499.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 45kB
+              Buffers: shared hit=648
+              ->  Seq Scan on videos v  (cost=0.00..948.00 rows=499 width=40) (actual time=0.009..1.406 rows=499.00 loops=1)
+                    Filter: is_made_for_kids
+                    Rows Removed by Filter: 29501
+                    Buffers: shared hit=648
+Planning:
+  Buffers: shared hit=171
+Planning Time: 0.325 ms
+Execution Time: 8.907 ms
+=== R18 run 2 ===
+Sort  (cost=2795.66..2796.52 rows=345 width=40) (actual time=8.703..8.710 rows=397.00 loops=1)
+  Sort Key: v.video_id
+  Sort Method: quicksort  Memory: 48kB
+  Buffers: shared hit=1307
+  ->  Hash Join  (cost=2360.24..2781.12 rows=345 width=40) (actual time=7.103..8.592 rows=397.00 loops=1)
+        Hash Cond: (c.video_id = v.video_id)
+        Buffers: shared hit=1304
+        ->  HashAggregate  (cost=1406.00..1613.23 rows=20723 width=12) (actual time=5.696..6.452 rows=23325.00 loops=1)
+              Group Key: c.video_id
+              Batches: 1  Memory Usage: 1305kB
+              Buffers: shared hit=656
+              ->  Seq Scan on comments c  (cost=0.00..1256.00 rows=60000 width=12) (actual time=0.004..1.442 rows=60000.00 loops=1)
+                    Buffers: shared hit=656
+        ->  Hash  (cost=948.00..948.00 rows=499 width=40) (actual time=1.398..1.399 rows=499.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 45kB
+              Buffers: shared hit=648
+              ->  Seq Scan on videos v  (cost=0.00..948.00 rows=499 width=40) (actual time=0.009..1.363 rows=499.00 loops=1)
+                    Filter: is_made_for_kids
+                    Rows Removed by Filter: 29501
+                    Buffers: shared hit=648
+Planning:
+  Buffers: shared hit=171
+Planning Time: 0.324 ms
+Execution Time: 8.779 ms
+=== R18 run 3 ===
+Sort  (cost=2795.66..2796.52 rows=345 width=40) (actual time=8.557..8.565 rows=397.00 loops=1)
+  Sort Key: v.video_id
+  Sort Method: quicksort  Memory: 48kB
+  Buffers: shared hit=1307
+  ->  Hash Join  (cost=2360.24..2781.12 rows=345 width=40) (actual time=7.011..8.444 rows=397.00 loops=1)
+        Hash Cond: (c.video_id = v.video_id)
+        Buffers: shared hit=1304
+        ->  HashAggregate  (cost=1406.00..1613.23 rows=20723 width=12) (actual time=5.625..6.348 rows=23325.00 loops=1)
+              Group Key: c.video_id
+              Batches: 1  Memory Usage: 1305kB
+              Buffers: shared hit=656
+              ->  Seq Scan on comments c  (cost=0.00..1256.00 rows=60000 width=12) (actual time=0.005..1.405 rows=60000.00 loops=1)
+                    Buffers: shared hit=656
+        ->  Hash  (cost=948.00..948.00 rows=499 width=40) (actual time=1.375..1.375 rows=499.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 45kB
+              Buffers: shared hit=648
+              ->  Seq Scan on videos v  (cost=0.00..948.00 rows=499 width=40) (actual time=0.009..1.340 rows=499.00 loops=1)
+                    Filter: is_made_for_kids
+                    Rows Removed by Filter: 29501
+                    Buffers: shared hit=648
+Planning:
+  Buffers: shared hit=171
+Planning Time: 0.318 ms
+Execution Time: 8.634 ms

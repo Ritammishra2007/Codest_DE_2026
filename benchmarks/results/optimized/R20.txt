@@ -1,0 +1,100 @@
+=== R20 run 1 ===
+WindowAgg  (cost=1245.24..1719.67 rows=11164 width=68) (actual time=1.453..1.928 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((watch_events.started_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=149
+  ->  GroupAggregate  (cost=1245.20..1552.21 rows=11164 width=36) (actual time=1.431..1.914 rows=30.00 loops=1)
+        Group Key: ((watch_events.started_at)::date)
+        Buffers: shared hit=149
+        ->  Sort  (cost=1245.20..1273.11 rows=11164 width=8) (actual time=1.409..1.606 rows=10989.00 loops=1)
+              Sort Key: ((watch_events.started_at)::date)
+              Sort Method: quicksort  Memory: 642kB
+              Buffers: shared hit=149
+              ->  Index Scan using idx_watch_events_started_at on watch_events  (cost=0.42..494.61 rows=11164 width=8) (actual time=0.013..1.067 rows=10989.00 loops=1)
+                    Index Cond: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Index Searches: 1
+                    Buffers: shared hit=146
+Planning:
+  Buffers: shared hit=195
+Planning Time: 0.371 ms
+Execution Time: 1.973 ms
+=== R20 run 2 ===
+WindowAgg  (cost=1245.24..1719.67 rows=11164 width=68) (actual time=1.478..1.917 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((watch_events.started_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=149
+  ->  GroupAggregate  (cost=1245.20..1552.21 rows=11164 width=36) (actual time=1.459..1.904 rows=30.00 loops=1)
+        Group Key: ((watch_events.started_at)::date)
+        Buffers: shared hit=149
+        ->  Sort  (cost=1245.20..1273.11 rows=11164 width=8) (actual time=1.438..1.623 rows=10989.00 loops=1)
+              Sort Key: ((watch_events.started_at)::date)
+              Sort Method: quicksort  Memory: 642kB
+              Buffers: shared hit=149
+              ->  Index Scan using idx_watch_events_started_at on watch_events  (cost=0.42..494.61 rows=11164 width=8) (actual time=0.012..1.100 rows=10989.00 loops=1)
+                    Index Cond: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Index Searches: 1
+                    Buffers: shared hit=146
+Planning:
+  Buffers: shared hit=195
+Planning Time: 0.326 ms
+Execution Time: 1.952 ms
+=== R20 run 3 ===
+WindowAgg  (cost=1245.24..1719.67 rows=11164 width=68) (actual time=1.448..1.915 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((watch_events.started_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=149
+  ->  GroupAggregate  (cost=1245.20..1552.21 rows=11164 width=36) (actual time=1.424..1.901 rows=30.00 loops=1)
+        Group Key: ((watch_events.started_at)::date)
+        Buffers: shared hit=149
+        ->  Sort  (cost=1245.20..1273.11 rows=11164 width=8) (actual time=1.395..1.579 rows=10989.00 loops=1)
+              Sort Key: ((watch_events.started_at)::date)
+              Sort Method: quicksort  Memory: 642kB
+              Buffers: shared hit=149
+              ->  Index Scan using idx_watch_events_started_at on watch_events  (cost=0.42..494.61 rows=11164 width=8) (actual time=0.010..1.053 rows=10989.00 loops=1)
+                    Index Cond: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Index Searches: 1
+                    Buffers: shared hit=146
+Planning:
+  Buffers: shared hit=195
+Planning Time: 0.311 ms
+Execution Time: 1.948 ms
+=== R20 run 4 ===
+WindowAgg  (cost=1245.24..1719.67 rows=11164 width=68) (actual time=1.339..1.776 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((watch_events.started_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=149
+  ->  GroupAggregate  (cost=1245.20..1552.21 rows=11164 width=36) (actual time=1.319..1.763 rows=30.00 loops=1)
+        Group Key: ((watch_events.started_at)::date)
+        Buffers: shared hit=149
+        ->  Sort  (cost=1245.20..1273.11 rows=11164 width=8) (actual time=1.299..1.491 rows=10989.00 loops=1)
+              Sort Key: ((watch_events.started_at)::date)
+              Sort Method: quicksort  Memory: 642kB
+              Buffers: shared hit=149
+              ->  Index Scan using idx_watch_events_started_at on watch_events  (cost=0.42..494.61 rows=11164 width=8) (actual time=0.012..0.985 rows=10989.00 loops=1)
+                    Index Cond: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Index Searches: 1
+                    Buffers: shared hit=146
+Planning:
+  Buffers: shared hit=195
+Planning Time: 0.322 ms
+Execution Time: 1.813 ms
+=== R20 run 5 ===
+WindowAgg  (cost=1245.24..1719.67 rows=11164 width=68) (actual time=1.332..1.769 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((watch_events.started_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=149
+  ->  GroupAggregate  (cost=1245.20..1552.21 rows=11164 width=36) (actual time=1.312..1.757 rows=30.00 loops=1)
+        Group Key: ((watch_events.started_at)::date)
+        Buffers: shared hit=149
+        ->  Sort  (cost=1245.20..1273.11 rows=11164 width=8) (actual time=1.292..1.463 rows=10989.00 loops=1)
+              Sort Key: ((watch_events.started_at)::date)
+              Sort Method: quicksort  Memory: 642kB
+              Buffers: shared hit=149
+              ->  Index Scan using idx_watch_events_started_at on watch_events  (cost=0.42..494.61 rows=11164 width=8) (actual time=0.010..0.972 rows=10989.00 loops=1)
+                    Index Cond: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Index Searches: 1
+                    Buffers: shared hit=146
+Planning:
+  Buffers: shared hit=195
+Planning Time: 0.301 ms
+Execution Time: 1.805 ms

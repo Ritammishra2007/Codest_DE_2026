@@ -1,0 +1,170 @@
+=== R25 run 1 ===
+Sort  (cost=9680.06..9727.57 rows=19005 width=25) (actual time=23.910..23.917 rows=181.00 loops=1)
+  Sort Key: a.shown_at DESC
+  Sort Method: quicksort  Memory: 33kB
+  Buffers: shared hit=2881 read=5
+  ->  Hash Join  (cost=2537.56..8329.37 rows=19005 width=25) (actual time=6.059..23.884 rows=181.00 loops=1)
+        Hash Cond: (w.user_id = u.user_id)
+        Join Filter: (u.premium_until >= (a.shown_at)::date)
+        Rows Removed by Join Filter: 239
+        Buffers: shared hit=2878 read=5
+        ->  Hash Join  (cost=1758.81..7400.95 rows=57014 width=21) (actual time=5.221..21.494 rows=57014.00 loops=1)
+              Hash Cond: (w.watch_id = a.watch_id)
+              Buffers: shared hit=2548
+              ->  Seq Scan on watch_events w  (cost=0.00..4072.00 rows=200000 width=12) (actual time=0.004..4.549 rows=200000.00 loops=1)
+                    Buffers: shared hit=2072
+              ->  Hash  (cost=1046.14..1046.14 rows=57014 width=25) (actual time=5.184..5.185 rows=57014.00 loops=1)
+                    Buckets: 65536  Batches: 1  Memory Usage: 4076kB
+                    Buffers: shared hit=476
+                    ->  Seq Scan on ad_impressions a  (cost=0.00..1046.14 rows=57014 width=25) (actual time=0.002..2.259 rows=57014.00 loops=1)
+                          Buffers: shared hit=476
+        ->  Hash  (cost=403.75..403.75 rows=30000 width=8) (actual time=0.786..0.786 rows=2398.00 loops=1)
+              Buckets: 32768  Batches: 1  Memory Usage: 350kB
+              Buffers: shared hit=330 read=5
+              ->  Bitmap Heap Scan on users u  (cost=43.77..403.75 rows=30000 width=8) (actual time=0.305..0.677 rows=2398.00 loops=1)
+                    Recheck Cond: (premium_until IS NOT NULL)
+                    Heap Blocks: exact=330
+                    Buffers: shared hit=330 read=5
+                    ->  Bitmap Index Scan on idx_users_premium_until  (cost=0.00..36.27 rows=2398 width=0) (actual time=0.287..0.287 rows=2398.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared read=5
+Planning:
+  Buffers: shared hit=537 read=6
+Planning Time: 1.325 ms
+Execution Time: 23.972 ms
+=== R25 run 2 ===
+Sort  (cost=9680.06..9727.57 rows=19005 width=25) (actual time=23.176..23.182 rows=181.00 loops=1)
+  Sort Key: a.shown_at DESC
+  Sort Method: quicksort  Memory: 33kB
+  Buffers: shared hit=2886
+  ->  Hash Join  (cost=2537.56..8329.37 rows=19005 width=25) (actual time=5.668..23.151 rows=181.00 loops=1)
+        Hash Cond: (w.user_id = u.user_id)
+        Join Filter: (u.premium_until >= (a.shown_at)::date)
+        Rows Removed by Join Filter: 239
+        Buffers: shared hit=2883
+        ->  Hash Join  (cost=1758.81..7400.95 rows=57014 width=21) (actual time=5.113..21.076 rows=57014.00 loops=1)
+              Hash Cond: (w.watch_id = a.watch_id)
+              Buffers: shared hit=2548
+              ->  Seq Scan on watch_events w  (cost=0.00..4072.00 rows=200000 width=12) (actual time=0.004..4.557 rows=200000.00 loops=1)
+                    Buffers: shared hit=2072
+              ->  Hash  (cost=1046.14..1046.14 rows=57014 width=25) (actual time=5.074..5.074 rows=57014.00 loops=1)
+                    Buckets: 65536  Batches: 1  Memory Usage: 4076kB
+                    Buffers: shared hit=476
+                    ->  Seq Scan on ad_impressions a  (cost=0.00..1046.14 rows=57014 width=25) (actual time=0.003..2.247 rows=57014.00 loops=1)
+                          Buffers: shared hit=476
+        ->  Hash  (cost=403.75..403.75 rows=30000 width=8) (actual time=0.495..0.495 rows=2398.00 loops=1)
+              Buckets: 32768  Batches: 1  Memory Usage: 350kB
+              Buffers: shared hit=335
+              ->  Bitmap Heap Scan on users u  (cost=43.77..403.75 rows=30000 width=8) (actual time=0.066..0.409 rows=2398.00 loops=1)
+                    Recheck Cond: (premium_until IS NOT NULL)
+                    Heap Blocks: exact=330
+                    Buffers: shared hit=335
+                    ->  Bitmap Index Scan on idx_users_premium_until  (cost=0.00..36.27 rows=2398 width=0) (actual time=0.048..0.048 rows=2398.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=541
+Planning Time: 0.628 ms
+Execution Time: 23.229 ms
+=== R25 run 3 ===
+Sort  (cost=9680.06..9727.57 rows=19005 width=25) (actual time=23.326..23.330 rows=181.00 loops=1)
+  Sort Key: a.shown_at DESC
+  Sort Method: quicksort  Memory: 33kB
+  Buffers: shared hit=2886
+  ->  Hash Join  (cost=2537.56..8329.37 rows=19005 width=25) (actual time=5.804..23.300 rows=181.00 loops=1)
+        Hash Cond: (w.user_id = u.user_id)
+        Join Filter: (u.premium_until >= (a.shown_at)::date)
+        Rows Removed by Join Filter: 239
+        Buffers: shared hit=2883
+        ->  Hash Join  (cost=1758.81..7400.95 rows=57014 width=21) (actual time=5.207..21.182 rows=57014.00 loops=1)
+              Hash Cond: (w.watch_id = a.watch_id)
+              Buffers: shared hit=2548
+              ->  Seq Scan on watch_events w  (cost=0.00..4072.00 rows=200000 width=12) (actual time=0.004..4.596 rows=200000.00 loops=1)
+                    Buffers: shared hit=2072
+              ->  Hash  (cost=1046.14..1046.14 rows=57014 width=25) (actual time=5.172..5.172 rows=57014.00 loops=1)
+                    Buckets: 65536  Batches: 1  Memory Usage: 4076kB
+                    Buffers: shared hit=476
+                    ->  Seq Scan on ad_impressions a  (cost=0.00..1046.14 rows=57014 width=25) (actual time=0.003..2.260 rows=57014.00 loops=1)
+                          Buffers: shared hit=476
+        ->  Hash  (cost=403.75..403.75 rows=30000 width=8) (actual time=0.547..0.547 rows=2398.00 loops=1)
+              Buckets: 32768  Batches: 1  Memory Usage: 350kB
+              Buffers: shared hit=335
+              ->  Bitmap Heap Scan on users u  (cost=43.77..403.75 rows=30000 width=8) (actual time=0.068..0.438 rows=2398.00 loops=1)
+                    Recheck Cond: (premium_until IS NOT NULL)
+                    Heap Blocks: exact=330
+                    Buffers: shared hit=335
+                    ->  Bitmap Index Scan on idx_users_premium_until  (cost=0.00..36.27 rows=2398 width=0) (actual time=0.050..0.050 rows=2398.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=541
+Planning Time: 0.654 ms
+Execution Time: 23.372 ms
+=== R25 run 4 ===
+Sort  (cost=9680.06..9727.57 rows=19005 width=25) (actual time=23.725..23.730 rows=181.00 loops=1)
+  Sort Key: a.shown_at DESC
+  Sort Method: quicksort  Memory: 33kB
+  Buffers: shared hit=2886
+  ->  Hash Join  (cost=2537.56..8329.37 rows=19005 width=25) (actual time=5.619..23.698 rows=181.00 loops=1)
+        Hash Cond: (w.user_id = u.user_id)
+        Join Filter: (u.premium_until >= (a.shown_at)::date)
+        Rows Removed by Join Filter: 239
+        Buffers: shared hit=2883
+        ->  Hash Join  (cost=1758.81..7400.95 rows=57014 width=21) (actual time=5.078..21.582 rows=57014.00 loops=1)
+              Hash Cond: (w.watch_id = a.watch_id)
+              Buffers: shared hit=2548
+              ->  Seq Scan on watch_events w  (cost=0.00..4072.00 rows=200000 width=12) (actual time=0.003..4.671 rows=200000.00 loops=1)
+                    Buffers: shared hit=2072
+              ->  Hash  (cost=1046.14..1046.14 rows=57014 width=25) (actual time=5.044..5.044 rows=57014.00 loops=1)
+                    Buckets: 65536  Batches: 1  Memory Usage: 4076kB
+                    Buffers: shared hit=476
+                    ->  Seq Scan on ad_impressions a  (cost=0.00..1046.14 rows=57014 width=25) (actual time=0.002..2.199 rows=57014.00 loops=1)
+                          Buffers: shared hit=476
+        ->  Hash  (cost=403.75..403.75 rows=30000 width=8) (actual time=0.490..0.491 rows=2398.00 loops=1)
+              Buckets: 32768  Batches: 1  Memory Usage: 350kB
+              Buffers: shared hit=335
+              ->  Bitmap Heap Scan on users u  (cost=43.77..403.75 rows=30000 width=8) (actual time=0.064..0.403 rows=2398.00 loops=1)
+                    Recheck Cond: (premium_until IS NOT NULL)
+                    Heap Blocks: exact=330
+                    Buffers: shared hit=335
+                    ->  Bitmap Index Scan on idx_users_premium_until  (cost=0.00..36.27 rows=2398 width=0) (actual time=0.047..0.047 rows=2398.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=541
+Planning Time: 0.603 ms
+Execution Time: 23.774 ms
+=== R25 run 5 ===
+Sort  (cost=9680.06..9727.57 rows=19005 width=25) (actual time=23.801..23.806 rows=181.00 loops=1)
+  Sort Key: a.shown_at DESC
+  Sort Method: quicksort  Memory: 33kB
+  Buffers: shared hit=2886
+  ->  Hash Join  (cost=2537.56..8329.37 rows=19005 width=25) (actual time=6.009..23.777 rows=181.00 loops=1)
+        Hash Cond: (w.user_id = u.user_id)
+        Join Filter: (u.premium_until >= (a.shown_at)::date)
+        Rows Removed by Join Filter: 239
+        Buffers: shared hit=2883
+        ->  Hash Join  (cost=1758.81..7400.95 rows=57014 width=21) (actual time=5.399..21.643 rows=57014.00 loops=1)
+              Hash Cond: (w.watch_id = a.watch_id)
+              Buffers: shared hit=2548
+              ->  Seq Scan on watch_events w  (cost=0.00..4072.00 rows=200000 width=12) (actual time=0.004..4.535 rows=200000.00 loops=1)
+                    Buffers: shared hit=2072
+              ->  Hash  (cost=1046.14..1046.14 rows=57014 width=25) (actual time=5.353..5.354 rows=57014.00 loops=1)
+                    Buckets: 65536  Batches: 1  Memory Usage: 4076kB
+                    Buffers: shared hit=476
+                    ->  Seq Scan on ad_impressions a  (cost=0.00..1046.14 rows=57014 width=25) (actual time=0.003..2.259 rows=57014.00 loops=1)
+                          Buffers: shared hit=476
+        ->  Hash  (cost=403.75..403.75 rows=30000 width=8) (actual time=0.561..0.561 rows=2398.00 loops=1)
+              Buckets: 32768  Batches: 1  Memory Usage: 350kB
+              Buffers: shared hit=335
+              ->  Bitmap Heap Scan on users u  (cost=43.77..403.75 rows=30000 width=8) (actual time=0.064..0.458 rows=2398.00 loops=1)
+                    Recheck Cond: (premium_until IS NOT NULL)
+                    Heap Blocks: exact=330
+                    Buffers: shared hit=335
+                    ->  Bitmap Index Scan on idx_users_premium_until  (cost=0.00..36.27 rows=2398 width=0) (actual time=0.047..0.047 rows=2398.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=541
+Planning Time: 0.635 ms
+Execution Time: 23.848 ms

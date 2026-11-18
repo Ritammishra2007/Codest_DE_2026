@@ -1,0 +1,40 @@
+=== W02 run 1 ===
+Insert on watch_events  (cost=0.00..0.01 rows=0 width=0) (actual time=0.492..0.492 rows=0.00 loops=1)
+  Buffers: shared hit=108 read=3 dirtied=4
+  ->  Result  (cost=0.00..0.01 rows=1 width=188) (actual time=0.001..0.001 rows=1.00 loops=1)
+Planning Time: 0.038 ms
+Trigger for constraint fk_watch_user: time=0.395 calls=1
+Trigger for constraint fk_watch_video: time=0.235 calls=1
+Execution Time: 1.132 ms
+=== W02 run 2 ===
+Insert on watch_events  (cost=0.00..0.01 rows=0 width=0) (actual time=0.150..0.150 rows=0.00 loops=1)
+  Buffers: shared hit=112 dirtied=1
+  ->  Result  (cost=0.00..0.01 rows=1 width=188) (actual time=0.001..0.001 rows=1.00 loops=1)
+Planning Time: 0.037 ms
+Trigger for constraint fk_watch_user: time=0.290 calls=1
+Trigger for constraint fk_watch_video: time=0.219 calls=1
+Execution Time: 0.668 ms
+=== W02 run 3 ===
+Insert on watch_events  (cost=0.00..0.01 rows=0 width=0) (actual time=0.153..0.153 rows=0.00 loops=1)
+  Buffers: shared hit=112 dirtied=1
+  ->  Result  (cost=0.00..0.01 rows=1 width=188) (actual time=0.001..0.001 rows=1.00 loops=1)
+Planning Time: 0.036 ms
+Trigger for constraint fk_watch_user: time=0.279 calls=1
+Trigger for constraint fk_watch_video: time=0.218 calls=1
+Execution Time: 0.660 ms
+=== W02 run 4 ===
+Insert on watch_events  (cost=0.00..0.01 rows=0 width=0) (actual time=0.156..0.156 rows=0.00 loops=1)
+  Buffers: shared hit=112 dirtied=1
+  ->  Result  (cost=0.00..0.01 rows=1 width=188) (actual time=0.001..0.001 rows=1.00 loops=1)
+Planning Time: 0.038 ms
+Trigger for constraint fk_watch_user: time=0.268 calls=1
+Trigger for constraint fk_watch_video: time=0.278 calls=1
+Execution Time: 0.713 ms
+=== W02 run 5 ===
+Insert on watch_events  (cost=0.00..0.01 rows=0 width=0) (actual time=0.148..0.148 rows=0.00 loops=1)
+  Buffers: shared hit=112 dirtied=1
+  ->  Result  (cost=0.00..0.01 rows=1 width=188) (actual time=0.001..0.001 rows=1.00 loops=1)
+Planning Time: 0.036 ms
+Trigger for constraint fk_watch_user: time=0.248 calls=1
+Trigger for constraint fk_watch_video: time=0.206 calls=1
+Execution Time: 0.613 ms

@@ -1,0 +1,120 @@
+=== R08 run 1 ===
+Sort  (cost=35.39..35.40 rows=4 width=49) (actual time=0.064..0.064 rows=5.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=23
+  ->  GroupAggregate  (cost=35.21..35.35 rows=4 width=49) (actual time=0.054..0.057 rows=5.00 loops=1)
+        Group Key: traffic_source
+        Buffers: shared hit=20
+        ->  Sort  (cost=35.21..35.23 rows=8 width=13) (actual time=0.047..0.048 rows=14.00 loops=1)
+              Sort Key: traffic_source
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=20
+              ->  Bitmap Heap Scan on watch_events  (cost=4.48..35.09 rows=8 width=13) (actual time=0.014..0.032 rows=14.00 loops=1)
+                    Recheck Cond: (video_id = 'ZkNSlUB1EOs'::bpchar)
+                    Heap Blocks: exact=14
+                    Buffers: shared hit=17
+                    ->  Bitmap Index Scan on idx_watch_events_video_id  (cost=0.00..4.48 rows=8 width=0) (actual time=0.008..0.008 rows=14.00 loops=1)
+                          Index Cond: (video_id = 'ZkNSlUB1EOs'::bpchar)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=197
+Planning Time: 0.270 ms
+Execution Time: 0.093 ms
+=== R08 run 2 ===
+Sort  (cost=35.39..35.40 rows=4 width=49) (actual time=0.070..0.070 rows=5.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=23
+  ->  GroupAggregate  (cost=35.21..35.35 rows=4 width=49) (actual time=0.060..0.062 rows=5.00 loops=1)
+        Group Key: traffic_source
+        Buffers: shared hit=20
+        ->  Sort  (cost=35.21..35.23 rows=8 width=13) (actual time=0.051..0.052 rows=14.00 loops=1)
+              Sort Key: traffic_source
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=20
+              ->  Bitmap Heap Scan on watch_events  (cost=4.48..35.09 rows=8 width=13) (actual time=0.014..0.034 rows=14.00 loops=1)
+                    Recheck Cond: (video_id = 'ZkNSlUB1EOs'::bpchar)
+                    Heap Blocks: exact=14
+                    Buffers: shared hit=17
+                    ->  Bitmap Index Scan on idx_watch_events_video_id  (cost=0.00..4.48 rows=8 width=0) (actual time=0.009..0.009 rows=14.00 loops=1)
+                          Index Cond: (video_id = 'ZkNSlUB1EOs'::bpchar)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=197
+Planning Time: 0.347 ms
+Execution Time: 0.107 ms
+=== R08 run 3 ===
+Sort  (cost=35.39..35.40 rows=4 width=49) (actual time=0.065..0.065 rows=5.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=23
+  ->  GroupAggregate  (cost=35.21..35.35 rows=4 width=49) (actual time=0.055..0.058 rows=5.00 loops=1)
+        Group Key: traffic_source
+        Buffers: shared hit=20
+        ->  Sort  (cost=35.21..35.23 rows=8 width=13) (actual time=0.048..0.049 rows=14.00 loops=1)
+              Sort Key: traffic_source
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=20
+              ->  Bitmap Heap Scan on watch_events  (cost=4.48..35.09 rows=8 width=13) (actual time=0.014..0.032 rows=14.00 loops=1)
+                    Recheck Cond: (video_id = 'ZkNSlUB1EOs'::bpchar)
+                    Heap Blocks: exact=14
+                    Buffers: shared hit=17
+                    ->  Bitmap Index Scan on idx_watch_events_video_id  (cost=0.00..4.48 rows=8 width=0) (actual time=0.009..0.009 rows=14.00 loops=1)
+                          Index Cond: (video_id = 'ZkNSlUB1EOs'::bpchar)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=197
+Planning Time: 0.273 ms
+Execution Time: 0.094 ms
+=== R08 run 4 ===
+Sort  (cost=35.39..35.40 rows=4 width=49) (actual time=0.068..0.069 rows=5.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=23
+  ->  GroupAggregate  (cost=35.21..35.35 rows=4 width=49) (actual time=0.059..0.061 rows=5.00 loops=1)
+        Group Key: traffic_source
+        Buffers: shared hit=20
+        ->  Sort  (cost=35.21..35.23 rows=8 width=13) (actual time=0.046..0.047 rows=14.00 loops=1)
+              Sort Key: traffic_source
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=20
+              ->  Bitmap Heap Scan on watch_events  (cost=4.48..35.09 rows=8 width=13) (actual time=0.013..0.031 rows=14.00 loops=1)
+                    Recheck Cond: (video_id = 'ZkNSlUB1EOs'::bpchar)
+                    Heap Blocks: exact=14
+                    Buffers: shared hit=17
+                    ->  Bitmap Index Scan on idx_watch_events_video_id  (cost=0.00..4.48 rows=8 width=0) (actual time=0.008..0.008 rows=14.00 loops=1)
+                          Index Cond: (video_id = 'ZkNSlUB1EOs'::bpchar)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=197
+Planning Time: 0.285 ms
+Execution Time: 0.097 ms
+=== R08 run 5 ===
+Sort  (cost=35.39..35.40 rows=4 width=49) (actual time=0.061..0.061 rows=5.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=23
+  ->  GroupAggregate  (cost=35.21..35.35 rows=4 width=49) (actual time=0.052..0.053 rows=5.00 loops=1)
+        Group Key: traffic_source
+        Buffers: shared hit=20
+        ->  Sort  (cost=35.21..35.23 rows=8 width=13) (actual time=0.045..0.046 rows=14.00 loops=1)
+              Sort Key: traffic_source
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=20
+              ->  Bitmap Heap Scan on watch_events  (cost=4.48..35.09 rows=8 width=13) (actual time=0.012..0.030 rows=14.00 loops=1)
+                    Recheck Cond: (video_id = 'ZkNSlUB1EOs'::bpchar)
+                    Heap Blocks: exact=14
+                    Buffers: shared hit=17
+                    ->  Bitmap Index Scan on idx_watch_events_video_id  (cost=0.00..4.48 rows=8 width=0) (actual time=0.007..0.007 rows=14.00 loops=1)
+                          Index Cond: (video_id = 'ZkNSlUB1EOs'::bpchar)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=197
+Planning Time: 0.261 ms
+Execution Time: 0.089 ms

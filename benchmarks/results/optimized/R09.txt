@@ -1,0 +1,150 @@
+=== R09 run 1 ===
+Sort  (cost=1342.66..1342.68 rows=9 width=76) (actual time=1.380..1.381 rows=12.00 loops=1)
+  Sort Key: (round((100.0 * avg(((w.watch_seconds)::numeric / (v.duration_sec)::numeric))), 1)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=796
+  ->  GroupAggregate  (cost=1341.31..1342.52 rows=9 width=76) (actual time=1.356..1.370 rows=12.00 loops=1)
+        Group Key: v.video_id
+        Buffers: shared hit=793
+        ->  Sort  (cost=1341.31..1341.46 rows=60 width=44) (actual time=1.347..1.348 rows=97.00 loops=1)
+              Sort Key: v.video_id
+              Sort Method: quicksort  Memory: 31kB
+              Buffers: shared hit=793
+              ->  Nested Loop  (cost=4.48..1339.54 rows=60 width=44) (actual time=0.208..1.327 rows=97.00 loops=1)
+                    Buffers: shared hit=790
+                    ->  Seq Scan on videos v  (cost=0.00..1023.00 rows=9 width=40) (actual time=0.063..1.176 rows=15.00 loops=1)
+                          Filter: (channel_id = 217)
+                          Rows Removed by Filter: 29985
+                          Buffers: shared hit=648
+                    ->  Bitmap Heap Scan on watch_events w  (cost=4.48..35.09 rows=8 width=16) (actual time=0.004..0.009 rows=6.47 loops=15)
+                          Recheck Cond: (video_id = v.video_id)
+                          Heap Blocks: exact=97
+                          Buffers: shared hit=142
+                          ->  Bitmap Index Scan on idx_watch_events_video_id  (cost=0.00..4.48 rows=8 width=0) (actual time=0.002..0.002 rows=6.47 loops=15)
+                                Index Cond: (video_id = v.video_id)
+                                Index Searches: 15
+                                Buffers: shared hit=45
+Planning:
+  Buffers: shared hit=313 read=1
+Planning Time: 0.941 ms
+Execution Time: 1.412 ms
+=== R09 run 2 ===
+Sort  (cost=1342.66..1342.68 rows=9 width=76) (actual time=1.564..1.565 rows=12.00 loops=1)
+  Sort Key: (round((100.0 * avg(((w.watch_seconds)::numeric / (v.duration_sec)::numeric))), 1)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=796
+  ->  GroupAggregate  (cost=1341.31..1342.52 rows=9 width=76) (actual time=1.539..1.555 rows=12.00 loops=1)
+        Group Key: v.video_id
+        Buffers: shared hit=793
+        ->  Sort  (cost=1341.31..1341.46 rows=60 width=44) (actual time=1.529..1.531 rows=97.00 loops=1)
+              Sort Key: v.video_id
+              Sort Method: quicksort  Memory: 31kB
+              Buffers: shared hit=793
+              ->  Nested Loop  (cost=4.48..1339.54 rows=60 width=44) (actual time=0.207..1.503 rows=97.00 loops=1)
+                    Buffers: shared hit=790
+                    ->  Seq Scan on videos v  (cost=0.00..1023.00 rows=9 width=40) (actual time=0.066..1.326 rows=15.00 loops=1)
+                          Filter: (channel_id = 217)
+                          Rows Removed by Filter: 29985
+                          Buffers: shared hit=648
+                    ->  Bitmap Heap Scan on watch_events w  (cost=4.48..35.09 rows=8 width=16) (actual time=0.005..0.011 rows=6.47 loops=15)
+                          Recheck Cond: (video_id = v.video_id)
+                          Heap Blocks: exact=97
+                          Buffers: shared hit=142
+                          ->  Bitmap Index Scan on idx_watch_events_video_id  (cost=0.00..4.48 rows=8 width=0) (actual time=0.003..0.003 rows=6.47 loops=15)
+                                Index Cond: (video_id = v.video_id)
+                                Index Searches: 15
+                                Buffers: shared hit=45
+Planning:
+  Buffers: shared hit=314
+Planning Time: 0.532 ms
+Execution Time: 1.596 ms
+=== R09 run 3 ===
+Sort  (cost=1342.66..1342.68 rows=9 width=76) (actual time=1.403..1.403 rows=12.00 loops=1)
+  Sort Key: (round((100.0 * avg(((w.watch_seconds)::numeric / (v.duration_sec)::numeric))), 1)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=796
+  ->  GroupAggregate  (cost=1341.31..1342.52 rows=9 width=76) (actual time=1.380..1.394 rows=12.00 loops=1)
+        Group Key: v.video_id
+        Buffers: shared hit=793
+        ->  Sort  (cost=1341.31..1341.46 rows=60 width=44) (actual time=1.371..1.373 rows=97.00 loops=1)
+              Sort Key: v.video_id
+              Sort Method: quicksort  Memory: 31kB
+              Buffers: shared hit=793
+              ->  Nested Loop  (cost=4.48..1339.54 rows=60 width=44) (actual time=0.207..1.352 rows=97.00 loops=1)
+                    Buffers: shared hit=790
+                    ->  Seq Scan on videos v  (cost=0.00..1023.00 rows=9 width=40) (actual time=0.062..1.199 rows=15.00 loops=1)
+                          Filter: (channel_id = 217)
+                          Rows Removed by Filter: 29985
+                          Buffers: shared hit=648
+                    ->  Bitmap Heap Scan on watch_events w  (cost=4.48..35.09 rows=8 width=16) (actual time=0.004..0.009 rows=6.47 loops=15)
+                          Recheck Cond: (video_id = v.video_id)
+                          Heap Blocks: exact=97
+                          Buffers: shared hit=142
+                          ->  Bitmap Index Scan on idx_watch_events_video_id  (cost=0.00..4.48 rows=8 width=0) (actual time=0.002..0.002 rows=6.47 loops=15)
+                                Index Cond: (video_id = v.video_id)
+                                Index Searches: 15
+                                Buffers: shared hit=45
+Planning:
+  Buffers: shared hit=314
+Planning Time: 0.544 ms
+Execution Time: 1.437 ms
+=== R09 run 4 ===
+Sort  (cost=1342.66..1342.68 rows=9 width=76) (actual time=1.520..1.521 rows=12.00 loops=1)
+  Sort Key: (round((100.0 * avg(((w.watch_seconds)::numeric / (v.duration_sec)::numeric))), 1)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=796
+  ->  GroupAggregate  (cost=1341.31..1342.52 rows=9 width=76) (actual time=1.497..1.511 rows=12.00 loops=1)
+        Group Key: v.video_id
+        Buffers: shared hit=793
+        ->  Sort  (cost=1341.31..1341.46 rows=60 width=44) (actual time=1.489..1.491 rows=97.00 loops=1)
+              Sort Key: v.video_id
+              Sort Method: quicksort  Memory: 31kB
+              Buffers: shared hit=793
+              ->  Nested Loop  (cost=4.48..1339.54 rows=60 width=44) (actual time=0.236..1.468 rows=97.00 loops=1)
+                    Buffers: shared hit=790
+                    ->  Seq Scan on videos v  (cost=0.00..1023.00 rows=9 width=40) (actual time=0.067..1.301 rows=15.00 loops=1)
+                          Filter: (channel_id = 217)
+                          Rows Removed by Filter: 29985
+                          Buffers: shared hit=648
+                    ->  Bitmap Heap Scan on watch_events w  (cost=4.48..35.09 rows=8 width=16) (actual time=0.004..0.010 rows=6.47 loops=15)
+                          Recheck Cond: (video_id = v.video_id)
+                          Heap Blocks: exact=97
+                          Buffers: shared hit=142
+                          ->  Bitmap Index Scan on idx_watch_events_video_id  (cost=0.00..4.48 rows=8 width=0) (actual time=0.002..0.002 rows=6.47 loops=15)
+                                Index Cond: (video_id = v.video_id)
+                                Index Searches: 15
+                                Buffers: shared hit=45
+Planning:
+  Buffers: shared hit=314
+Planning Time: 0.613 ms
+Execution Time: 1.559 ms
+=== R09 run 5 ===
+Sort  (cost=1342.66..1342.68 rows=9 width=76) (actual time=1.340..1.341 rows=12.00 loops=1)
+  Sort Key: (round((100.0 * avg(((w.watch_seconds)::numeric / (v.duration_sec)::numeric))), 1)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=796
+  ->  GroupAggregate  (cost=1341.31..1342.52 rows=9 width=76) (actual time=1.317..1.332 rows=12.00 loops=1)
+        Group Key: v.video_id
+        Buffers: shared hit=793
+        ->  Sort  (cost=1341.31..1341.46 rows=60 width=44) (actual time=1.309..1.311 rows=97.00 loops=1)
+              Sort Key: v.video_id
+              Sort Method: quicksort  Memory: 31kB
+              Buffers: shared hit=793
+              ->  Nested Loop  (cost=4.48..1339.54 rows=60 width=44) (actual time=0.202..1.289 rows=97.00 loops=1)
+                    Buffers: shared hit=790
+                    ->  Seq Scan on videos v  (cost=0.00..1023.00 rows=9 width=40) (actual time=0.062..1.144 rows=15.00 loops=1)
+                          Filter: (channel_id = 217)
+                          Rows Removed by Filter: 29985
+                          Buffers: shared hit=648
+                    ->  Bitmap Heap Scan on watch_events w  (cost=4.48..35.09 rows=8 width=16) (actual time=0.004..0.009 rows=6.47 loops=15)
+                          Recheck Cond: (video_id = v.video_id)
+                          Heap Blocks: exact=97
+                          Buffers: shared hit=142
+                          ->  Bitmap Index Scan on idx_watch_events_video_id  (cost=0.00..4.48 rows=8 width=0) (actual time=0.002..0.002 rows=6.47 loops=15)
+                                Index Cond: (video_id = v.video_id)
+                                Index Searches: 15
+                                Buffers: shared hit=45
+Planning:
+  Buffers: shared hit=314
+Planning Time: 0.524 ms
+Execution Time: 1.371 ms

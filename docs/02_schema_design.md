@@ -382,4 +382,4 @@ During our exploratory analysis of the seed data exports, we uncovered several k
    All 1,526 private videos have an empty `published_at` (`NULL`), whereas all public, scheduled, and unlisted videos have a valid timestamp. We codified this into table constraint `chk_videos_private_published`.
 
 5. **Pinning Rules for Replies:**
-   All 7,390 reply comments (`parent_comment_id IS NOT NULL`) have `is_pinned = false`. Only top-level comments are ever pinned by creators, which we enforced using constraint `chk_comments_pinned_reply`.
+   All 7,390 reply comments (`parent_comment_id IS NOT NULL`) have `is_pinned = false`. Only top-level comments are ever pinned by creators, which we enforced using constraint `chk_comments_pinned_reply`. 

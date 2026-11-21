@@ -1,0 +1,78 @@
+=== R18 run 1 ===
+Gather Merge  (cost=20119.89..20773.04 rows=5608 width=40) (actual time=19.767..21.499 rows=7621.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=26823 read=15232
+  ->  Sort  (cost=19119.87..19125.71 rows=2337 width=40) (actual time=18.053..18.110 rows=2540.33 loops=3)
+        Sort Key: v.video_id
+        Sort Method: quicksort  Memory: 259kB
+        Buffers: shared hit=26823 read=15232
+        Worker 0:  Sort Method: quicksort  Memory: 234kB
+        Worker 1:  Sort Method: quicksort  Memory: 248kB
+        ->  Nested Loop Semi Join  (cost=0.43..18989.11 rows=2337 width=40) (actual time=0.099..17.245 rows=2540.33 loops=3)
+              Buffers: shared hit=26809 read=15232
+              ->  Parallel Seq Scan on videos v  (cost=0.00..15244.00 rows=3983 width=40) (actual time=0.047..10.134 rows=3254.67 loops=3)
+                    Filter: is_made_for_kids
+                    Rows Removed by Filter: 196745
+                    Buffers: shared hit=265 read=12479
+              ->  Index Only Scan using idx_comments_video_id on comments c  (cost=0.43..1.68 rows=3 width=12) (actual time=0.002..0.002 rows=0.78 loops=9764)
+                    Index Cond: (video_id = v.video_id)
+                    Heap Fetches: 0
+                    Index Searches: 9764
+                    Buffers: shared hit=26544 read=2753
+Planning:
+  Buffers: shared hit=231 read=52
+Planning Time: 0.820 ms
+Execution Time: 21.674 ms
+=== R18 run 2 ===
+Gather Merge  (cost=20119.89..20773.04 rows=5608 width=40) (actual time=17.523..19.123 rows=7621.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=29858 read=12197
+  ->  Sort  (cost=19119.87..19125.71 rows=2337 width=40) (actual time=15.895..15.952 rows=2540.33 loops=3)
+        Sort Key: v.video_id
+        Sort Method: quicksort  Memory: 262kB
+        Buffers: shared hit=29858 read=12197
+        Worker 0:  Sort Method: quicksort  Memory: 242kB
+        Worker 1:  Sort Method: quicksort  Memory: 237kB
+        ->  Nested Loop Semi Join  (cost=0.43..18989.11 rows=2337 width=40) (actual time=0.101..15.185 rows=2540.33 loops=3)
+              Buffers: shared hit=29844 read=12197
+              ->  Parallel Seq Scan on videos v  (cost=0.00..15244.00 rows=3983 width=40) (actual time=0.079..9.654 rows=3254.67 loops=3)
+                    Filter: is_made_for_kids
+                    Rows Removed by Filter: 196745
+                    Buffers: shared hit=547 read=12197
+              ->  Index Only Scan using idx_comments_video_id on comments c  (cost=0.43..1.68 rows=3 width=12) (actual time=0.002..0.002 rows=0.78 loops=9764)
+                    Index Cond: (video_id = v.video_id)
+                    Heap Fetches: 0
+                    Index Searches: 9764
+                    Buffers: shared hit=29297
+Planning:
+  Buffers: shared hit=283
+Planning Time: 0.517 ms
+Execution Time: 19.300 ms
+=== R18 run 3 ===
+Gather Merge  (cost=20119.89..20773.04 rows=5608 width=40) (actual time=17.925..19.529 rows=7621.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=30140 read=11915
+  ->  Sort  (cost=19119.87..19125.71 rows=2337 width=40) (actual time=16.320..16.377 rows=2540.33 loops=3)
+        Sort Key: v.video_id
+        Sort Method: quicksort  Memory: 266kB
+        Buffers: shared hit=30140 read=11915
+        Worker 0:  Sort Method: quicksort  Memory: 236kB
+        Worker 1:  Sort Method: quicksort  Memory: 238kB
+        ->  Nested Loop Semi Join  (cost=0.43..18989.11 rows=2337 width=40) (actual time=0.088..15.561 rows=2540.33 loops=3)
+              Buffers: shared hit=30126 read=11915
+              ->  Parallel Seq Scan on videos v  (cost=0.00..15244.00 rows=3983 width=40) (actual time=0.066..9.931 rows=3254.67 loops=3)
+                    Filter: is_made_for_kids
+                    Rows Removed by Filter: 196745
+                    Buffers: shared hit=829 read=11915
+              ->  Index Only Scan using idx_comments_video_id on comments c  (cost=0.43..1.68 rows=3 width=12) (actual time=0.002..0.002 rows=0.78 loops=9764)
+                    Index Cond: (video_id = v.video_id)
+                    Heap Fetches: 0
+                    Index Searches: 9764
+                    Buffers: shared hit=29297
+Planning:
+  Buffers: shared hit=283
+Planning Time: 0.509 ms
+Execution Time: 19.711 ms

@@ -1,0 +1,81 @@
+=== R13 run 1 ===
+Nested Loop Anti Join  (cost=5.79..2285.22 rows=65 width=12) (actual time=0.771..104.888 rows=531.00 loops=1)
+  Buffers: shared hit=9917 read=5828
+  ->  Bitmap Heap Scan on subscriptions s  (cost=4.93..254.00 rows=65 width=12) (actual time=0.097..1.414 rows=531.00 loops=1)
+        Recheck Cond: (channel_id = 217)
+        Heap Blocks: exact=523
+        Buffers: shared read=526
+        ->  Bitmap Index Scan on idx_subscriptions_channel_id  (cost=0.00..4.92 rows=65 width=0) (actual time=0.041..0.041 rows=531.00 loops=1)
+              Index Cond: (channel_id = 217)
+              Index Searches: 1
+              Buffers: shared read=3
+  ->  Nested Loop  (cost=0.85..31.24 rows=1 width=4) (actual time=0.195..0.195 rows=0.00 loops=531)
+        Buffers: shared hit=9917 read=5302
+        ->  Index Scan using idx_watch_events_user_started on watch_events w  (cost=0.43..28.47 rows=6 width=16) (actual time=0.006..0.016 rows=5.13 loops=531)
+              Index Cond: (user_id = s.user_id)
+              Index Searches: 531
+              Buffers: shared hit=1346 read=2977
+        ->  Index Scan using videos_pkey on videos v  (cost=0.42..0.46 rows=1 width=12) (actual time=0.035..0.035 rows=0.00 loops=2724)
+              Index Cond: (video_id = w.video_id)
+              Filter: (channel_id = 217)
+              Rows Removed by Filter: 1
+              Index Searches: 2724
+              Buffers: shared hit=8571 read=2325
+Planning:
+  Buffers: shared hit=467 read=16
+Planning Time: 1.159 ms
+Execution Time: 104.933 ms
+=== R13 run 2 ===
+Nested Loop Anti Join  (cost=5.79..2285.22 rows=65 width=12) (actual time=0.090..9.500 rows=531.00 loops=1)
+  Buffers: shared hit=15745
+  ->  Bitmap Heap Scan on subscriptions s  (cost=4.93..254.00 rows=65 width=12) (actual time=0.059..0.253 rows=531.00 loops=1)
+        Recheck Cond: (channel_id = 217)
+        Heap Blocks: exact=523
+        Buffers: shared hit=526
+        ->  Bitmap Index Scan on idx_subscriptions_channel_id  (cost=0.00..4.92 rows=65 width=0) (actual time=0.032..0.032 rows=531.00 loops=1)
+              Index Cond: (channel_id = 217)
+              Index Searches: 1
+              Buffers: shared hit=3
+  ->  Nested Loop  (cost=0.85..31.24 rows=1 width=4) (actual time=0.017..0.017 rows=0.00 loops=531)
+        Buffers: shared hit=15219
+        ->  Index Scan using idx_watch_events_user_started on watch_events w  (cost=0.43..28.47 rows=6 width=16) (actual time=0.002..0.005 rows=5.13 loops=531)
+              Index Cond: (user_id = s.user_id)
+              Index Searches: 531
+              Buffers: shared hit=4323
+        ->  Index Scan using videos_pkey on videos v  (cost=0.42..0.46 rows=1 width=12) (actual time=0.002..0.002 rows=0.00 loops=2724)
+              Index Cond: (video_id = w.video_id)
+              Filter: (channel_id = 217)
+              Rows Removed by Filter: 1
+              Index Searches: 2724
+              Buffers: shared hit=10896
+Planning:
+  Buffers: shared hit=483
+Planning Time: 0.700 ms
+Execution Time: 9.536 ms
+=== R13 run 3 ===
+Nested Loop Anti Join  (cost=5.79..2285.22 rows=65 width=12) (actual time=0.091..9.610 rows=531.00 loops=1)
+  Buffers: shared hit=15745
+  ->  Bitmap Heap Scan on subscriptions s  (cost=4.93..254.00 rows=65 width=12) (actual time=0.058..0.257 rows=531.00 loops=1)
+        Recheck Cond: (channel_id = 217)
+        Heap Blocks: exact=523
+        Buffers: shared hit=526
+        ->  Bitmap Index Scan on idx_subscriptions_channel_id  (cost=0.00..4.92 rows=65 width=0) (actual time=0.031..0.031 rows=531.00 loops=1)
+              Index Cond: (channel_id = 217)
+              Index Searches: 1
+              Buffers: shared hit=3
+  ->  Nested Loop  (cost=0.85..31.24 rows=1 width=4) (actual time=0.018..0.018 rows=0.00 loops=531)
+        Buffers: shared hit=15219
+        ->  Index Scan using idx_watch_events_user_started on watch_events w  (cost=0.43..28.47 rows=6 width=16) (actual time=0.003..0.005 rows=5.13 loops=531)
+              Index Cond: (user_id = s.user_id)
+              Index Searches: 531
+              Buffers: shared hit=4323
+        ->  Index Scan using videos_pkey on videos v  (cost=0.42..0.46 rows=1 width=12) (actual time=0.002..0.002 rows=0.00 loops=2724)
+              Index Cond: (video_id = w.video_id)
+              Filter: (channel_id = 217)
+              Rows Removed by Filter: 1
+              Index Searches: 2724
+              Buffers: shared hit=10896
+Planning:
+  Buffers: shared hit=483
+Planning Time: 0.681 ms
+Execution Time: 9.644 ms

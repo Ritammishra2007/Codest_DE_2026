@@ -1,0 +1,57 @@
+=== R04 run 1 ===
+Limit  (cost=14987.25..14987.30 rows=20 width=40) (actual time=43.290..43.292 rows=20.00 loops=1)
+  Buffers: shared hit=155 read=12323 written=122
+  ->  Sort  (cost=14987.25..15095.91 rows=43463 width=40) (actual time=43.289..43.290 rows=20.00 loops=1)
+        Sort Key: view_count DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=155 read=12323 written=122
+        ->  Bitmap Heap Scan on videos  (cost=434.77..13830.72 rows=43463 width=40) (actual time=5.120..40.561 rows=43907.00 loops=1)
+              Recheck Cond: (((title)::text ~~* '%tutorial%'::text) AND ((visibility)::text = 'PUBLIC'::text))
+              Heap Blocks: exact=12369
+              Buffers: shared hit=152 read=12323 written=122
+              ->  Bitmap Index Scan on idx_videos_title_trgm  (cost=0.00..423.91 rows=43463 width=0) (actual time=4.305..4.305 rows=43907.00 loops=1)
+                    Index Cond: ((title)::text ~~* '%tutorial%'::text)
+                    Index Searches: 1
+                    Buffers: shared hit=53 read=53
+Planning:
+  Buffers: shared hit=182 read=1
+Planning Time: 0.994 ms
+Execution Time: 43.330 ms
+=== R04 run 2 ===
+Limit  (cost=14987.25..14987.30 rows=20 width=40) (actual time=37.153..37.155 rows=20.00 loops=1)
+  Buffers: shared hit=12478
+  ->  Sort  (cost=14987.25..15095.91 rows=43463 width=40) (actual time=37.153..37.154 rows=20.00 loops=1)
+        Sort Key: view_count DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=12478
+        ->  Bitmap Heap Scan on videos  (cost=434.77..13830.72 rows=43463 width=40) (actual time=4.888..34.662 rows=43907.00 loops=1)
+              Recheck Cond: (((title)::text ~~* '%tutorial%'::text) AND ((visibility)::text = 'PUBLIC'::text))
+              Heap Blocks: exact=12369
+              Buffers: shared hit=12475
+              ->  Bitmap Index Scan on idx_videos_title_trgm  (cost=0.00..423.91 rows=43463 width=0) (actual time=4.102..4.102 rows=43907.00 loops=1)
+                    Index Cond: ((title)::text ~~* '%tutorial%'::text)
+                    Index Searches: 1
+                    Buffers: shared hit=106
+Planning:
+  Buffers: shared hit=183
+Planning Time: 0.680 ms
+Execution Time: 37.187 ms
+=== R04 run 3 ===
+Limit  (cost=14987.25..14987.30 rows=20 width=40) (actual time=37.169..37.170 rows=20.00 loops=1)
+  Buffers: shared hit=12478
+  ->  Sort  (cost=14987.25..15095.91 rows=43463 width=40) (actual time=37.168..37.169 rows=20.00 loops=1)
+        Sort Key: view_count DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=12478
+        ->  Bitmap Heap Scan on videos  (cost=434.77..13830.72 rows=43463 width=40) (actual time=4.755..34.680 rows=43907.00 loops=1)
+              Recheck Cond: (((title)::text ~~* '%tutorial%'::text) AND ((visibility)::text = 'PUBLIC'::text))
+              Heap Blocks: exact=12369
+              Buffers: shared hit=12475
+              ->  Bitmap Index Scan on idx_videos_title_trgm  (cost=0.00..423.91 rows=43463 width=0) (actual time=3.987..3.987 rows=43907.00 loops=1)
+                    Index Cond: ((title)::text ~~* '%tutorial%'::text)
+                    Index Searches: 1
+                    Buffers: shared hit=106
+Planning:
+  Buffers: shared hit=183
+Planning Time: 0.690 ms
+Execution Time: 37.208 ms

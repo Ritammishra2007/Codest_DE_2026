@@ -1,0 +1,60 @@
+=== R08 run 1 ===
+Sort  (cost=40.95..40.97 rows=5 width=49) (actual time=0.081..0.081 rows=1.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=8 read=8 written=5
+  ->  GroupAggregate  (cost=40.73..40.89 rows=5 width=49) (actual time=0.074..0.074 rows=1.00 loops=1)
+        Group Key: traffic_source
+        Buffers: shared hit=5 read=8 written=5
+        ->  Sort  (cost=40.73..40.75 rows=9 width=13) (actual time=0.065..0.065 rows=7.00 loops=1)
+              Sort Key: traffic_source
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=5 read=8 written=5
+              ->  Index Scan using idx_watch_events_video_id on watch_events  (cost=0.43..40.59 rows=9 width=13) (actual time=0.013..0.052 rows=7.00 loops=1)
+                    Index Cond: (video_id = 'ZkNSlUB1EOs'::bpchar)
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=8 written=5
+Planning:
+  Buffers: shared hit=196 read=1
+Planning Time: 0.473 ms
+Execution Time: 0.107 ms
+=== R08 run 2 ===
+Sort  (cost=40.95..40.97 rows=5 width=49) (actual time=0.039..0.040 rows=1.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=16
+  ->  GroupAggregate  (cost=40.73..40.89 rows=5 width=49) (actual time=0.033..0.033 rows=1.00 loops=1)
+        Group Key: traffic_source
+        Buffers: shared hit=13
+        ->  Sort  (cost=40.73..40.75 rows=9 width=13) (actual time=0.025..0.026 rows=7.00 loops=1)
+              Sort Key: traffic_source
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=13
+              ->  Index Scan using idx_watch_events_video_id on watch_events  (cost=0.43..40.59 rows=9 width=13) (actual time=0.009..0.014 rows=7.00 loops=1)
+                    Index Cond: (video_id = 'ZkNSlUB1EOs'::bpchar)
+                    Index Searches: 1
+                    Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=197
+Planning Time: 0.264 ms
+Execution Time: 0.065 ms
+=== R08 run 3 ===
+Sort  (cost=40.95..40.97 rows=5 width=49) (actual time=0.037..0.037 rows=1.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=16
+  ->  GroupAggregate  (cost=40.73..40.89 rows=5 width=49) (actual time=0.032..0.032 rows=1.00 loops=1)
+        Group Key: traffic_source
+        Buffers: shared hit=13
+        ->  Sort  (cost=40.73..40.75 rows=9 width=13) (actual time=0.024..0.024 rows=7.00 loops=1)
+              Sort Key: traffic_source
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=13
+              ->  Index Scan using idx_watch_events_video_id on watch_events  (cost=0.43..40.59 rows=9 width=13) (actual time=0.009..0.013 rows=7.00 loops=1)
+                    Index Cond: (video_id = 'ZkNSlUB1EOs'::bpchar)
+                    Index Searches: 1
+                    Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=197
+Planning Time: 0.245 ms
+Execution Time: 0.060 ms

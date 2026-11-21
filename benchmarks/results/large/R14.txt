@@ -1,0 +1,108 @@
+=== R14 run 1 ===
+Sort  (cost=16974.82..16974.85 rows=12 width=84) (actual time=12.597..13.522 rows=60.00 loops=1)
+  Sort Key: (count(*) FILTER (WHERE ((r.reaction)::text = 'LIKE'::text))) DESC
+  Sort Method: quicksort  Memory: 29kB
+  Buffers: shared hit=6553 read=6538
+  ->  GroupAggregate  (cost=16970.76..16974.60 rows=12 width=84) (actual time=12.523..13.507 rows=60.00 loops=1)
+        Group Key: v.video_id
+        Buffers: shared hit=6550 read=6538
+        ->  Gather Merge  (cost=16970.76..16973.90 rows=27 width=94) (actual time=12.512..13.454 rows=156.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=6550 read=6538
+              ->  Sort  (cost=15970.73..15970.76 rows=11 width=94) (actual time=11.029..11.030 rows=52.00 loops=3)
+                    Sort Key: v.video_id
+                    Sort Method: quicksort  Memory: 31kB
+                    Buffers: shared hit=6550 read=6538
+                    Worker 0:  Sort Method: quicksort  Memory: 30kB
+                    Worker 1:  Sort Method: quicksort  Memory: 29kB
+                    ->  Nested Loop Left Join  (cost=4.46..15970.54 rows=11 width=94) (actual time=0.790..10.977 rows=52.00 loops=3)
+                          Buffers: shared hit=6536 read=6538
+                          ->  Parallel Seq Scan on videos v  (cost=0.00..15869.00 rows=5 width=36) (actual time=0.717..10.092 rows=20.00 loops=3)
+                                Filter: (channel_id = 217)
+                                Rows Removed by Filter: 199980
+                                Buffers: shared hit=6426 read=6318
+                          ->  Bitmap Heap Scan on video_reactions r  (cost=4.46..20.27 rows=4 width=70) (actual time=0.026..0.043 rows=2.47 loops=60)
+                                Recheck Cond: (video_id = v.video_id)
+                                Heap Blocks: exact=57
+                                Buffers: shared hit=110 read=220
+                                ->  Bitmap Index Scan on idx_video_reactions_video_id  (cost=0.00..4.46 rows=4 width=0) (actual time=0.007..0.007 rows=2.47 loops=60)
+                                      Index Cond: (video_id = v.video_id)
+                                      Index Searches: 60
+                                      Buffers: shared hit=109 read=73
+Planning:
+  Buffers: shared hit=254 read=9
+Planning Time: 0.533 ms
+Execution Time: 13.560 ms
+=== R14 run 2 ===
+Sort  (cost=16974.82..16974.85 rows=12 width=84) (actual time=12.137..13.202 rows=60.00 loops=1)
+  Sort Key: (count(*) FILTER (WHERE ((r.reaction)::text = 'LIKE'::text))) DESC
+  Sort Method: quicksort  Memory: 29kB
+  Buffers: shared hit=7037 read=6054
+  ->  GroupAggregate  (cost=16970.76..16974.60 rows=12 width=84) (actual time=12.065..13.172 rows=60.00 loops=1)
+        Group Key: v.video_id
+        Buffers: shared hit=7034 read=6054
+        ->  Gather Merge  (cost=16970.76..16973.90 rows=27 width=94) (actual time=12.053..13.136 rows=156.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=7034 read=6054
+              ->  Sort  (cost=15970.73..15970.76 rows=11 width=94) (actual time=10.372..10.373 rows=52.00 loops=3)
+                    Sort Key: v.video_id
+                    Sort Method: quicksort  Memory: 31kB
+                    Buffers: shared hit=7034 read=6054
+                    Worker 0:  Sort Method: quicksort  Memory: 29kB
+                    Worker 1:  Sort Method: quicksort  Memory: 30kB
+                    ->  Nested Loop Left Join  (cost=4.46..15970.54 rows=11 width=94) (actual time=0.683..10.340 rows=52.00 loops=3)
+                          Buffers: shared hit=7020 read=6054
+                          ->  Parallel Seq Scan on videos v  (cost=0.00..15869.00 rows=5 width=36) (actual time=0.649..10.148 rows=20.00 loops=3)
+                                Filter: (channel_id = 217)
+                                Rows Removed by Filter: 199980
+                                Buffers: shared hit=6690 read=6054
+                          ->  Bitmap Heap Scan on video_reactions r  (cost=4.46..20.27 rows=4 width=70) (actual time=0.007..0.008 rows=2.47 loops=60)
+                                Recheck Cond: (video_id = v.video_id)
+                                Heap Blocks: exact=60
+                                Buffers: shared hit=330
+                                ->  Bitmap Index Scan on idx_video_reactions_video_id  (cost=0.00..4.46 rows=4 width=0) (actual time=0.004..0.004 rows=2.47 loops=60)
+                                      Index Cond: (video_id = v.video_id)
+                                      Index Searches: 60
+                                      Buffers: shared hit=182
+Planning:
+  Buffers: shared hit=263
+Planning Time: 0.483 ms
+Execution Time: 13.238 ms
+=== R14 run 3 ===
+Sort  (cost=16974.82..16974.85 rows=12 width=84) (actual time=11.872..12.905 rows=60.00 loops=1)
+  Sort Key: (count(*) FILTER (WHERE ((r.reaction)::text = 'LIKE'::text))) DESC
+  Sort Method: quicksort  Memory: 29kB
+  Buffers: shared hit=7319 read=5772
+  ->  GroupAggregate  (cost=16970.76..16974.60 rows=12 width=84) (actual time=11.812..12.892 rows=60.00 loops=1)
+        Group Key: v.video_id
+        Buffers: shared hit=7316 read=5772
+        ->  Gather Merge  (cost=16970.76..16973.90 rows=27 width=94) (actual time=11.788..12.841 rows=156.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=7316 read=5772
+              ->  Sort  (cost=15970.73..15970.76 rows=11 width=94) (actual time=10.287..10.288 rows=52.00 loops=3)
+                    Sort Key: v.video_id
+                    Sort Method: quicksort  Memory: 32kB
+                    Buffers: shared hit=7316 read=5772
+                    Worker 0:  Sort Method: quicksort  Memory: 29kB
+                    Worker 1:  Sort Method: quicksort  Memory: 29kB
+                    ->  Nested Loop Left Join  (cost=4.46..15970.54 rows=11 width=94) (actual time=1.063..10.255 rows=52.00 loops=3)
+                          Buffers: shared hit=7302 read=5772
+                          ->  Parallel Seq Scan on videos v  (cost=0.00..15869.00 rows=5 width=36) (actual time=1.026..10.068 rows=20.00 loops=3)
+                                Filter: (channel_id = 217)
+                                Rows Removed by Filter: 199980
+                                Buffers: shared hit=6972 read=5772
+                          ->  Bitmap Heap Scan on video_reactions r  (cost=4.46..20.27 rows=4 width=70) (actual time=0.007..0.008 rows=2.47 loops=60)
+                                Recheck Cond: (video_id = v.video_id)
+                                Heap Blocks: exact=66
+                                Buffers: shared hit=330
+                                ->  Bitmap Index Scan on idx_video_reactions_video_id  (cost=0.00..4.46 rows=4 width=0) (actual time=0.004..0.004 rows=2.47 loops=60)
+                                      Index Cond: (video_id = v.video_id)
+                                      Index Searches: 60
+                                      Buffers: shared hit=182
+Planning:
+  Buffers: shared hit=263
+Planning Time: 0.466 ms
+Execution Time: 12.943 ms
